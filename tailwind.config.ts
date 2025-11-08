@@ -57,6 +57,19 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        retro: {
+          pink: "hsl(var(--retro-pink))",
+          blue: "hsl(var(--retro-blue))",
+          cream: "hsl(var(--retro-cream))",
+          dark: "hsl(var(--retro-dark))",
+        },
+        console: {
+          green: "hsl(var(--console-green))",
+        },
+      },
+      fontFamily: {
+        pixel: ['"Press Start 2P"', 'monospace'],
+        console: ['"Courier New"', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",
