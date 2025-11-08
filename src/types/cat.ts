@@ -6,8 +6,7 @@ export interface Cat {
   physical: string;
   medical: string;
   notes: string;
-  spriteUrl: string;
-  photoDataURL?: string;
+  photoUrl?: string;
   createdAt: string;
 }
 

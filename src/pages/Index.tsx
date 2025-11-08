@@ -18,7 +18,7 @@ const Index = () => {
           </p>
         </header>
 
-        <Tabs defaultValue="view" className="w-full">
+        <Tabs defaultValue="add" className="w-full">
           <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 mb-8 bg-card border-4 border-border retro-shadow h-auto">
             <TabsTrigger 
               value="add" 

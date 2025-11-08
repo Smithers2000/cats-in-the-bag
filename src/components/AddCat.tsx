@@ -6,12 +6,6 @@ import { Label } from '@/components/ui/label';
 import { addCat } from '@/lib/storage';
 import { Cat } from '@/types/cat';
 import { toast } from 'sonner';
-import chibiCat1 from '@/assets/chibi-cat-1.png';
-import chibiCat2 from '@/assets/chibi-cat-2.png';
-import chibiCat3 from '@/assets/chibi-cat-3.png';
-import chibiCat4 from '@/assets/chibi-cat-4.png';
-
-const defaultSprites = [chibiCat1, chibiCat2, chibiCat3, chibiCat4];
 
 export const AddCat = () => {
   const [formData, setFormData] = useState({
@@ -21,11 +15,8 @@ export const AddCat = () => {
     physical: '',
     medical: '',
     notes: '',
-    spriteUrl: defaultSprites[0],
-    photoDataURL: '',
+    photoUrl: '',
   });
-
-  const [customSprite, setCustomSprite] = useState<string>('');
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,33 +24,6 @@ export const AddCat = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSpriteSelect = (sprite: string) => {
-    setFormData({ ...formData, spriteUrl: sprite });
-  };
-
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({ ...formData, photoDataURL: reader.result as string });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleCustomSpriteUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const dataUrl = reader.result as string;
-        setCustomSprite(dataUrl);
-        setFormData({ ...formData, spriteUrl: dataUrl });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,10 +52,8 @@ export const AddCat = () => {
       physical: '',
       medical: '',
       notes: '',
-      spriteUrl: defaultSprites[0],
-      photoDataURL: '',
+      photoUrl: '',
     });
-    setCustomSprite('');
   };
 
   return (
@@ -185,70 +147,23 @@ export const AddCat = () => {
         </div>
 
         <div className="bg-card p-6 rounded-lg border-4 border-border retro-shadow">
-          <h2 className="text-xl mb-6 text-card-foreground">Sprite Picker</h2>
-          
-          <div className="grid grid-cols-4 gap-4 mb-4">
-            {defaultSprites.map((sprite, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => handleSpriteSelect(sprite)}
-                className={`p-2 rounded-lg border-4 transition-all retro-shadow-hover ${
-                  formData.spriteUrl === sprite
-                    ? 'border-primary bg-primary/20'
-                    : 'border-border bg-background'
-                }`}
-              >
-                <img src={sprite} alt={`Sprite ${index + 1}`} className="w-full" />
-              </button>
-            ))}
-          </div>
-
-          {customSprite && (
-            <div className="mb-4">
-              <button
-                type="button"
-                onClick={() => handleSpriteSelect(customSprite)}
-                className={`p-2 rounded-lg border-4 transition-all retro-shadow-hover ${
-                  formData.spriteUrl === customSprite
-                    ? 'border-primary bg-primary/20'
-                    : 'border-border bg-background'
-                }`}
-              >
-                <img src={customSprite} alt="Custom sprite" className="w-24 mx-auto" />
-              </button>
-            </div>
-          )}
-
-          <div>
-            <Label htmlFor="customSprite" className="text-xs mb-2 block">Upload Custom Sprite</Label>
-            <Input
-              id="customSprite"
-              type="file"
-              accept="image/*"
-              onChange={handleCustomSpriteUpload}
-              className="border-2 border-border text-xs"
-            />
-          </div>
-        </div>
-
-        <div className="bg-card p-6 rounded-lg border-4 border-border retro-shadow">
-          <h2 className="text-xl mb-6 text-card-foreground">Photo Upload</h2>
+          <h2 className="text-xl mb-6 text-card-foreground">Cat Photo</h2>
           
           <div>
-            <Label htmlFor="photo" className="text-xs mb-2 block">Cat Photo</Label>
+            <Label htmlFor="photoUrl" className="text-xs mb-2 block">Photo URL (from database)</Label>
             <Input
-              id="photo"
-              type="file"
-              accept="image/*"
-              onChange={handlePhotoUpload}
-              className="border-2 border-border text-xs mb-4"
+              id="photoUrl"
+              name="photoUrl"
+              value={formData.photoUrl}
+              onChange={handleInputChange}
+              placeholder="Will be populated from database..."
+              className="border-2 border-border text-sm mb-4"
             />
             
-            {formData.photoDataURL && (
+            {formData.photoUrl && (
               <div className="mt-4 p-4 bg-background rounded-lg border-2 border-border">
                 <img
-                  src={formData.photoDataURL}
+                  src={formData.photoUrl}
                   alt="Cat preview"
                   className="max-w-xs mx-auto rounded-lg"
                 />

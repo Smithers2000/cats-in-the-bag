@@ -15,7 +15,7 @@ export const Statistics = () => {
     const cats = getCats();
     
     const uniqueOwners = new Set(cats.map(cat => cat.ownerFullName.toLowerCase()));
-    const catsWithPhotos = cats.filter(cat => cat.photoDataURL).length;
+    const catsWithPhotos = cats.filter(cat => cat.photoUrl).length;
 
     setStats({
       totalCats: cats.length,

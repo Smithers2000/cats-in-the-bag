@@ -114,9 +114,9 @@ export const CatCard = ({ cat, onUpdate }: CatCardProps) => {
           <div class="value">${new Date(cat.createdAt).toLocaleDateString()}</div>
         </div>
         
-        ${cat.photoDataURL ? `
+        ${cat.photoUrl ? `
           <div class="photo">
-            <img src="${cat.photoDataURL}" alt="${cat.catName}" />
+            <img src="${cat.photoUrl}" alt="${cat.catName}" />
           </div>
         ` : ''}
         
@@ -139,16 +139,9 @@ export const CatCard = ({ cat, onUpdate }: CatCardProps) => {
     <Card className="border-4 border-border retro-shadow overflow-hidden">
       <CardContent className="p-4">
         <div className="flex gap-4 mb-4">
-          {cat.spriteUrl && (
+          {cat.photoUrl && (
             <img
-              src={cat.spriteUrl}
-              alt={cat.catName}
-              className="w-20 h-20 object-contain rounded-lg border-2 border-border bg-background p-1"
-            />
-          )}
-          {cat.photoDataURL && (
-            <img
-              src={cat.photoDataURL}
+              src={cat.photoUrl}
               alt={cat.catName}
               className="w-20 h-20 object-cover rounded-lg border-2 border-border"
             />
