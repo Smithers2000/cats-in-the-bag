@@ -1,8 +1,11 @@
 ## How to run the Webscraper
 
 1. Ensure you have Nods.Js installed and run the following commands:
+   
    -npm init -y
+   
    -npm install node-fetch puppeteer
+   
    -node index.js
    
 *Note that the pictures are a lot, so expect it to take a while
@@ -10,13 +13,17 @@
 ## How to run the API Model
 
 1. Ensure that you have Python 3.9 and pip installed. Run the following commands to check:
+   
    -python --version
+   
    -pip --version
    
-2. Ensure you have a photo to feed into the AI Model, and create a folder named "handdrawn_cats" in the same directory as the .py file.
+3. Ensure you have a photo to feed into the AI Model, and create a folder named "handdrawn_cats" in the same directory as the .py file.
 
-3. Run these commands:
+4. Run these commands:
+
    -pip install torch torchvision torchaudio transformers pillow numpy
+   
    -python compare.py
 
    
